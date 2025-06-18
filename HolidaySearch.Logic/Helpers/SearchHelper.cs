@@ -7,8 +7,7 @@ namespace HolidaySearch.Logic.Helpers
     {
         List<HolidayResult> ISearchHelper.MatchFlightsAndHotels(SearchHolidayRequest request, IEnumerable<Flight> flights, IEnumerable<Hotel> hotels)
         {
-            return null;
+            throw new NotImplementedException();
         }
     }
 }
-

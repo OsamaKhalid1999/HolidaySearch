@@ -24,9 +24,7 @@
 
   <ItemGroup>
     <Folder Include="Collections\Helpers\" />
-    <Folder Include="Collections\Providers\" />
     <Folder Include="Helpers\" />
-    <Folder Include="Providers\" />
   </ItemGroup>
 
   <ItemGroup>
