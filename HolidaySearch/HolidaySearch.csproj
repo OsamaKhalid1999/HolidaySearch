@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\HolidaySearch.Logic\HolidaySearch.Logic.csproj" />
   </ItemGroup>
 
 </Project>

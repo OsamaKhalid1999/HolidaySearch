@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "name": "Iberostar Grand Portals Nous",
+    "arrivalDate": "2022-11-05",
+    "pricePerNight": 100,
+    "localAirports": [
+      "TFS"
+    ],
+    "nights": 7
+  },
+  {
+    "id": 2,
+    "name": "Laguna Park 2",
+    "arrivalDate": "2022-11-05",
+    "pricePerNight": 50,
+    "localAirports": [
+      "TFS"
+    ],
+    "nights": 7
+  },
+  {
+    "id": 3,
+    "name": "Sol Katmandu Park & Resort",
+    "arrivalDate": "2023-06-15",
+    "pricePerNight": 59,
+    "localAirports": [
+      "PMI"
+    ],
+    "nights": 14
+  },
+  {
+    "id": 4,
+    "name": "Sol Katmandu Park & Resort",
+    "arrivalDate": "2023-06-15",
+    "pricePerNight": 59,
+    "localAirports": [
+      "PMI"
+    ],
+    "nights": 14
+  },
+  {
+    "id": 5,
+    "name": "Sol Katmandu Park & Resort",
+    "arrivalDate": "2023-06-15",
+    "pricePerNight": 60,
+    "localAirports": [
+      "PMI"
+    ],
+    "nights": 10
+  },
+  {
+    "id": 6,
+    "name": "Club Maspalomas Suites and Spa",
+    "arrivalDate": "2022-11-10",
+    "pricePerNight": 75,
+    "localAirports": [
+      "LPA"
+    ],
+    "nights": 14
+  },
+  {
+    "id": 9,
+    "name": "Nh Malaga",
+    "arrivalDate": "2023-07-01",
+    "pricePerNight": 83,
+    "localAirports": [
+      "AGP"
+    ],
+    "nights": 7
+  },
+  {
+    "id": 10,
+    "name": "Barcelo Malaga",
+    "arrivalDate": "2023-07-05",
+    "pricePerNight": 45,
+    "localAirports": [
+      "AGP"
+    ],
+    "nights": 10
+  },
+  {
+    "id": 11,
+    "name": "Parador De Malaga Gibralfaro",
+    "arrivalDate": "2023-10-16",
+    "pricePerNight": 100,
+    "localAirports": [
+      "AGP"
+    ],
+    "nights": 7
+  },
+  {
+    "id": 12,
+    "name": "MS Maestranza Hotel",
+    "arrivalDate": "2023-07-01",
+    "pricePerNight": 45,
+    "localAirports": [
+      "AGP"
+    ],
+    "nights": 14
+  },
+  {
+    "id": 13,
+    "name": "Jumeirah Port Soller",
+    "arrivalDate": "2023-06-15",
+    "pricePerNight": 295,
+    "localAirports": [
+      "PMI"
+    ],
+    "nights": 10
+  }
+]
