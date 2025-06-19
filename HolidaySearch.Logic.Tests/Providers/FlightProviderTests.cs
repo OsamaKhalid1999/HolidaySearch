@@ -1,5 +1,5 @@
 ﻿using HolidaySearch.Domain.Search;
-using HolidaySearch.Tests.Collections.Providers;
+using HolidaySearch.Logic.Tests.Collections.Providers;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 

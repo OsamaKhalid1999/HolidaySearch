@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 using Moq;
 using System.Diagnostics.CodeAnalysis;
 
-namespace HolidaySearch.Tests.Collections.Providers
+namespace HolidaySearch.Logic.Tests.Collections.Providers
 {
     [ExcludeFromCodeCoverage]
     internal class FlightProviderCollection

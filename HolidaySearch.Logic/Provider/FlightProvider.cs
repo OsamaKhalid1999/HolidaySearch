@@ -15,7 +15,6 @@ namespace HolidaySearch.Logic.Provider
             _filePath = config.Value.FlightsFilePath;
         }
 
-
         List<Flight> IFlightProvider.GetFlights()
         {
             var fullPath = Path.Combine(AppContext.BaseDirectory, _filePath);

@@ -26,6 +26,7 @@ namespace HolidaySearch.Logic.Setup
 
             // Helpers
             services.AddTransient<ISearchHelper, SearchHelper>();
+            services.AddTransient<IFilteringHelper, FilteringHelper>();
 
             return services;
         }

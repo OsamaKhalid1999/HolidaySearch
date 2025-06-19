@@ -20,6 +20,7 @@ namespace HolidaySearch.Logic.Services
             _hotelProvider = hotelProvider;
             _searchHelper = searchHelper;
         }
+
         SearchHolidayResponse IHolidaySearchService.Search(SearchHolidayRequest request)
         {
             if (request == null)
@@ -42,6 +43,11 @@ namespace HolidaySearch.Logic.Services
             }
 
             var filtered = _searchHelper.MatchFlightsAndHotels(request, flights, hotels);
+
+            if (filtered == null)
+            {
+                throw new InvalidOperationException("Filtered results could not be calculated.");
+            }
 
             var paged = filtered
                 .OrderBy(x => x.TotalPrice)
@@ -90,6 +96,5 @@ namespace HolidaySearch.Logic.Services
                 throw new ArgumentException("PageSize must be greater than zero.", nameof(request.PageSize));
             }
         }
-
     }
 }

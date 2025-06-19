@@ -23,11 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Collections\Helpers\" />
-    <Folder Include="Helpers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\HolidaySearch.Logic\HolidaySearch.Logic.csproj" />
   </ItemGroup>
 

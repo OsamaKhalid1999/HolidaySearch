@@ -5,7 +5,7 @@ using HolidaySearch.Logic.Services;
 using Moq;
 using System.Diagnostics.CodeAnalysis;
 
-namespace HolidaySearch.Tests.Collections
+namespace HolidaySearch.Logic.Tests.Collections.Services
 {
     [ExcludeFromCodeCoverage]
     internal class HolidaySearchServiceCollection

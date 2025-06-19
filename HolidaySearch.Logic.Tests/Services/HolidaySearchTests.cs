@@ -1,13 +1,13 @@
 ﻿using HolidaySearch.Domain.Search;
-using HolidaySearch.Tests.Collections;
+using HolidaySearch.Logic.Tests.Collections.Services;
 using Moq;
 using System.Diagnostics.CodeAnalysis;
 
-namespace HolidaySearch.Tests.Services
+namespace HolidaySearch.Logic.Tests.Services
 {
     [TestFixture]
     [ExcludeFromCodeCoverage]   
-    public class HolidaySearchServiceTests
+    public class HolidaySearchTests
     {
         [Test]
         public void Throw_ArgumentNullException_When_Request_Is_Null()
@@ -178,6 +178,27 @@ namespace HolidaySearch.Tests.Services
         }
 
         [Test]
+        public void Throw_InvalidOperationException_When_MatchFlightsAndHotels_Returns_Null()
+        {
+            // Arrange
+            var services = HolidaySearchServiceCollection.Create();
+            services.FlightProvider.Setup(x => x.GetFlights()).Returns(new List<Flight>());
+            services.HotelProvider.Setup(x => x.GetHotels()).Returns(new List<Hotel>());
+            services.SearchHelper
+                .Setup(x => x.MatchFlightsAndHotels(It.IsAny<SearchHolidayRequest>(), It.IsAny<List<Flight>>(), It.IsAny<List<Hotel>>()))
+                .Returns(() => null);
+
+            var request = CreateValidRequest();
+
+            // Act
+            TestDelegate method = () => services.Service.Search(request);
+
+            // Assert
+            Assert.That(method, Throws.InvalidOperationException.With.Message.Contains("Filtered results could not be calculated"));
+        }
+
+
+        [Test]
         public void Verify_MatchFlightsAndHotels_Called_Once()
         {
             // Arrange
@@ -195,7 +216,7 @@ namespace HolidaySearch.Tests.Services
         }
 
         [Test]
-        public void Return_Empty_Result_When_MatchReturns_Empty()
+        public void Search_Return_Empty_Result_When_MatchReturns_Empty()
         {
             // Arrange
             var services = HolidaySearchServiceCollection.Create();
@@ -213,7 +234,7 @@ namespace HolidaySearch.Tests.Services
         }
 
         [Test]
-        public void Return_PagedResults_Correctly()
+        public void Search_Return_PagedResults_Correctly()
         {
             // Arrange
             var results = new List<HolidayResult>
@@ -242,7 +263,7 @@ namespace HolidaySearch.Tests.Services
 
 
         [Test]
-        public void Return_TotalResults_And_Respects_Sorting()
+        public void Search_Return_TotalResultsSorted()
         {
             // Arrange
             var results = new List<HolidayResult>
@@ -268,6 +289,52 @@ namespace HolidaySearch.Tests.Services
             Assert.That(sortedPrices, Is.Ordered);
         }
 
+        [Test]
+        public void Search_MatchFlightsAndHotels_ShouldNotBeCalled_WhenFlightsAreNull()
+        {
+            // Arrange
+            var services = HolidaySearchServiceCollection.Create();
+            services.FlightProvider.Setup(x => x.GetFlights()).Returns(() => null);
+            var request = CreateValidRequest();
+
+            // Act & Assert
+            Assert.Throws<InvalidOperationException>(() => services.Service.Search(request));
+            services.SearchHelper.Verify(
+                x => x.MatchFlightsAndHotels(It.IsAny<SearchHolidayRequest>(), It.IsAny<List<Flight>>(), It.IsAny<List<Hotel>>()),
+                Times.Never);
+        }
+
+        [Test]
+        public void Search_MatchFlightsAndHotels_ShouldNotBeCalled_WhenHotelsAreNull()
+        {
+            // Arrange
+            var services = HolidaySearchServiceCollection.Create();
+            services.FlightProvider.Setup(x => x.GetFlights()).Returns(new List<Flight>());
+            services.HotelProvider.Setup(x => x.GetHotels()).Returns(() => null);
+            var request = CreateValidRequest();
+
+            // Act & Assert
+            Assert.Throws<InvalidOperationException>(() => services.Service.Search(request));
+            services.SearchHelper.Verify(
+                x => x.MatchFlightsAndHotels(It.IsAny<SearchHolidayRequest>(), It.IsAny<List<Flight>>(), It.IsAny<List<Hotel>>()),
+                Times.Never);
+        }
+
+        [Test]
+        public void Search_GetFlights_And_GetHotels_ShouldNotBeCalled_WhenRequestValidationFails()
+        {
+            // Arrange
+            var services = HolidaySearchServiceCollection.Create();
+            var invalidRequest = CreateValidRequest();
+            invalidRequest.DepartingFrom = ""; 
+
+            // Act
+            Assert.Throws<ArgumentException>(() => services.Service.Search(invalidRequest));
+
+            // Assert
+            services.FlightProvider.Verify(x => x.GetFlights(), Times.Never);
+            services.HotelProvider.Verify(x => x.GetHotels(), Times.Never);
+        }
 
         private SearchHolidayRequest CreateValidRequest()
         {
